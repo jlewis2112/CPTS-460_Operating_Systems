@@ -1,0 +1,18 @@
+Joseph Lewis
+CPTS 460
+MIDTERM
+
+part 3
+The following will generate data_abort faults
+
+*p = (int *)(512*0x100000); *p = 123;
+
+this will generate a data_abort fault becuase the virtual address is out of range.
+
+
+the diagram is as follows:
+
+try to			
+access the=========> entering =======>go to c function====>show the error
+virtual address     data abort		data_chandler()	   messages in
+out of range	      mode				   data_chandler

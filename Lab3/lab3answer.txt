@@ -1,0 +1,11 @@
+1. Draw a diagram to show the control flow of CPU when a KBD key is pressed
+
+while(has data == 0)=>KBD===>interrupt Handler===>char buf[n], int data, head, tail==========
+key not pressed	      a key	 an interupt	  input buffer with control variables
+		   is pressed	 occuring
+				causing a routine
+
+===>getc()===========>complete the process of the pressed key
+get the information
+from the buffer
+and destroy it

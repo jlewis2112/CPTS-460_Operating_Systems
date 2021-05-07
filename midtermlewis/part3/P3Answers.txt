@@ -1,0 +1,31 @@
+Part 3:
+(1) a. Does not generate a data_abort fault becuase it is writing to valid virtaul memory
+    b. Does not generate a data_abort fault becuase it is writing to valid virtaul memory
+    c. Generates a data_abort fault becuase it starts at the end of virtual memory, then attempts to write out of bounds.
+    d. Generates a data_abort fault becuase it starts outside of the end of virtual memory, then attempts to write out of bounds.
+
+(2)		DATA FAULT OCCURS
+			|
+			V
+	MMU writes data fault status at register c5		Reason: DFS is set for debug purposes only, FA allows the
+	and the address where it occurred at c6, then			debugger to restore the program to a previous 
+	calls the data_handler.						instruction.
+			|
+			V
+	data_handler in ts.s calls data_handler in t.c		Reason: Allows the user to easily call multiple fucntions
+			|						and print what they want to see.
+			V
+	data_handler in t.c calls get_spsr, get_fault_status,	Reason: To be able to print values to the screen, showing
+	get_fault_addr from ts.s which returns the program 		the user what has gone wrong.
+	mode, data fault status and data fault address 
+	respectively.	
+			|
+			V
+	data_handler in t.c the prints out each of the fields
+	then returns.
+			|
+			V
+	The data_handler in ts.s adjusts the return PC by -4	Reason: PC-8 points to instruction that caused the exception.
+	then the program resumes.					if link register is adjusted by -8, it would go to the
+									same instruction and cause an infinite loop. -4 allows
+									program to continue.

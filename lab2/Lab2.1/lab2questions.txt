@@ -1,0 +1,17 @@
+ Joseph Lewis
+Questions in the mk file
+
+# 1. What does the following statement do?	Assembles ts.s into object code
+arm-none-eabi-as -mcpu=arm926ej-s -g ts.s -o ts.o
+
+# 2. What does the following statement do? Compiles t.c into object code
+arm-none-eabi-gcc -c -mcpu=arm926ej-s -g t.c -o t.o
+
+# 3. What does the following statement do? link together object code into non-executable binary
+arm-none-eabi-ld -T t.ld ts.o t.o -o t.elf
+
+# 4. What does the following statement do? convert non-executable binary into executable binary
+arm-none-eabi-objcopy -O binary t.elf t.bin
+
+Questions in the t.ld file
+
